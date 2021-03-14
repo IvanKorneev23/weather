@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="app.js"></script>
+ <style>
+  .cards {
+    display: flex;
+    padding: 20px;
+    margin-left: 100px;
+  }
+</style>
+</head>
+<body>
+    <div id="Root"></div>
+    <script type="text/babel">
+        class WeatherCard extends React.Component {
+            render() {
+                return (
+                    <div className="card">
+                        <h2>{this.props.dayName}</h2>
+                        <p>Температура: {this.props.temperature}</p>
+                        <p>Возможны ли осадки: {this.props.precipitation}</p>
+                        <img src={this.props.linkToIcon}/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <div className="cards">
+                <WeatherCard
+                    dayName={dayWeatherData['morning']['name']}
+                    temperature={dayWeatherData['morning']['temperature']}
+                    precipitation={dayWeatherData['morning']['precipitation']}
+                    linkToIcon={dayWeatherData['morning']['icon']}
+                />
+                <WeatherCard
+                    dayName={dayWeatherData['day']['name']}
+                    temperature={dayWeatherData['day']['temperature']}
+                    precipitation={dayWeatherData['day']['precipitation']}
+                    linkToIcon={dayWeatherData['day']['icon']}
+                />
+                <WeatherCard
+                    dayName={dayWeatherData['evening']['name']}
+                    temperature={dayWeatherData['evening']['temperature']}
+                    precipitation={dayWeatherData['evening']['precipitation']}
+                    linkToIcon={dayWeatherData['evening']['icon']}
+                />
+                <WeatherCard
+                    dayName={dayWeatherData['night']['name']}
+                    temperature={dayWeatherData['night']['temperature']}
+                    precipitation={dayWeatherData['night']['precipitation']}
+                    linkToIcon={dayWeatherData['night']['icon']}
+                />
+            </div>,
+            document.getElementById('Root')
+        )
+    </script>
+</body>
+</html>
